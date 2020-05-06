@@ -27,6 +27,16 @@ def evernote_bold(*elements):
     span['style'] = STYLE_EVERNOTE_BOLD
     return span
 
+def evernote_highlight(*elements):
+    span = make_element(*elements, tag='span')
+    span['style'] = STYLE_EVERNOTE_HIGHLIGHT
+    return span
+
+def evernote_highlighted_bold(*elements):
+    span = make_element(*elements, tag='span')
+    span['style'] = STYLE_EVERNOTE_BOLD_AND_HIGHLIGHT
+    return span
+
 def bold(*elements):
     return make_element(*elements, tag='b')
 
@@ -46,3 +56,9 @@ class TestExcerpts(unittest.TestCase):
         converted = enml_to_bear.convert_div_excerpt(excerpt)
         self.assertEquals(converted,
             quote("Lorem ipsum ", bold("dolor sit amet")))
+
+    def test_convert_highlight(self):
+        excerpt = div("Lorem ipsum ", evernote_highlight("dolor sit amet"))
+        converted = enml_to_bear.convert_div_excerpt(excerpt)
+        self.assertEquals(converted,
+            quote("Lorem ipsum ", mark("dolor sit amet")))
