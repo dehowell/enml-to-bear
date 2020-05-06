@@ -28,10 +28,10 @@ def evernote_bold(*elements):
     return span
 
 def bold(*elements):
-    return make_elements(*elements, tag='b')
+    return make_element(*elements, tag='b')
 
 def mark(*elements):
-    return make_elements(*elements, tag='mark')
+    return make_element(*elements, tag='mark')
 
 class TestExcerpts(unittest.TestCase):
 
