@@ -62,3 +62,9 @@ class TestExcerpts(unittest.TestCase):
         converted = enml_to_bear.convert_div_excerpt(excerpt)
         self.assertEquals(converted,
             quote("Lorem ipsum ", mark("dolor sit amet")))
+
+    def test_convert_highlight(self):
+        excerpt = div("Lorem ipsum ", evernote_highlighted_bold("dolor sit amet"))
+        converted = enml_to_bear.convert_div_excerpt(excerpt)
+        self.assertEquals(converted,
+            quote("Lorem ipsum ", bold(mark("dolor sit amet"))))
