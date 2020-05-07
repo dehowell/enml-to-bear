@@ -20,7 +20,6 @@ def make_element(*elements, tag='div', styles=None):
         tag.append(element)
     return tag
 
-
 # DSL functions for common tags
 div = partial(make_element, tag='div')
 b = partial(make_element, tag='b')

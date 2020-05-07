@@ -17,7 +17,9 @@ def has_bold(styles):
 
 def is_excerpt(element):
     # TODO need a function w/ heuristics to find excerpts in the doc
-    pass
+    return (element.name == 'div'
+        and element.string is not None
+        and not element.string.startswith('PAGE'))
 
 def convert_div_excerpt(tag):
     assert tag.name == 'div'
@@ -46,3 +48,15 @@ def convert_div_excerpt(tag):
         del span['style']
 
     return tag
+
+
+def convert(enml):
+    soup = BeautifulSoup(enml, features="html.parser")
+
+    for div in soup.find_all('div'):
+        if is_excerpt(div):
+            print(div)
+            # convert_div_excerpt(div)
+
+    soup.find('en-note').unwrap()
+    return str(soup)

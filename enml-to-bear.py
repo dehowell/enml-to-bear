@@ -2,8 +2,9 @@ import sys
 
 from bs4 import BeautifulSoup
 
-if __name__ == '__main__':
+import enml_to_bear
 
+if __name__ == '__main__':
     enex_file = sys.argv[1]
 
     with open(enex_file) as f:
@@ -11,5 +12,5 @@ if __name__ == '__main__':
         soup = BeautifulSoup(enex, features="html.parser")
         enml = soup.find('content').string
 
-    polar = enml_to_polar(enml)
-    print(polar)
+    html = enml_to_bear.convert(enml)
+    print(html)
