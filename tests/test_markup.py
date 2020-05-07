@@ -83,11 +83,10 @@ class TestMarkupConversions(unittest.TestCase):
             expected = quote(b("Lorem ipsum ", mark("dolor sit amet")))
             self.assertEqual(actual, expected, 'Failed with styles {}'.format(hl_styles))
 
-    # @unittest.skip("merged bold spans not yet implemented")
     def test_convert_highlight_in_bold_phrase(self):
         attributes = [STYLE_EVERNOTE_HIGHLIGHT_BG, STYLE_EVERNOTE_HIGHLIGHT]
         for hl_styles in permutations(attributes, len(attributes)):
-            enml = div(b("Lorem ipsum ", span("dolor sit amet"), styles=hl_styles))
+            enml = div(b("Lorem ipsum ", span("dolor sit amet", styles=hl_styles)))
             actual = convert_div_excerpt(enml)
             expected = quote(b("Lorem ipsum ", mark("dolor sit amet")))
             self.assertEqual(actual, expected, 'Failed with styles {}'.format(hl_styles))
