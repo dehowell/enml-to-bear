@@ -23,7 +23,7 @@ def is_excerpt(element):
 
 def convert_div_excerpt(tag):
     assert tag.name == 'div'
-    tag.name = 'blockquote'
+    tag.name = 'p'
 
     # Replace all highlight + bold spans with b and mark
     for span in tag.find_all('span', style=lambda s: has_bold(s) and has_highlight(s)):
