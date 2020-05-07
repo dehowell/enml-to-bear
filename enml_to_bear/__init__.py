@@ -23,8 +23,14 @@ def convert_div_excerpt(tag):
     assert tag.name == 'div'
     tag.name = 'blockquote'
 
-    # Replace all highlight and bold spans with b and mark
+    # Replace all highlight + bold spans with b and mark
     for span in tag.find_all('span', style=lambda s: has_bold(s) and has_highlight(s)):
+        span.name = 'mark'
+        span.wrap(SOUP.new_tag('b'))
+        del span['style']
+
+    # Replace all highlighted b with mark
+    for span in tag.find_all('b', style=has_highlight):
         span.name = 'mark'
         span.wrap(SOUP.new_tag('b'))
         del span['style']

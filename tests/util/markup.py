@@ -25,5 +25,5 @@ def make_element(*elements, tag='div', styles=None):
 div = partial(make_element, tag='div')
 b = partial(make_element, tag='b')
 span = partial(make_element, tag='span')
-quote = partial(make_element, tag='blockquote')
 mark = partial(make_element, tag='mark')
+quote = partial(make_element, tag='blockquote')
